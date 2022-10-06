@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PokemonController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/pokemons', [PokemonController::class, 'index'])->name('pokemons.index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/apropos', [HomeController::class, 'apropos'])->name('home.apropos');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 
-Route::get('/pokemon', [PokemonController::class, 'index']);
+Route::resource('pokemons', PokemonController::class);
+
+Route::post('/pokemons/{id}/upload', [PokemonController::class, 'upload'])->name('pokemons.upload');
+
 
 

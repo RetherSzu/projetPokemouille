@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pokemons', function (Blueprint $table) {
+        Schema::create('plats', function (Blueprint $table) {
             $table->id();
             $table->string('nom')->unique();
-            $table->string('extension');
-            $table->integer('vie')->nullable(false);
-            $table->string('type')->nullable(false);
-            $table->string('faiblesse')->nullable(false);
-            $table->integer('degat')->nullable(false);
+            $table->string('type');
+            $table->float('prix')->nullable(false);
+            $table->string('description')->nullable(false);
             $table->string('url_media');
             $table->timestamps();
         });
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemons');
+        Schema::dropIfExists('plats');
     }
 };
