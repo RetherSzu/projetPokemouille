@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemons;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -69,6 +71,7 @@ class PokemonController extends Controller
         $pokemon->type = $request->type;
         $pokemon->faiblesse = $request->faiblesse;
         $pokemon->degat = $request->degat;
+        $pokemon->user_id = auth()->user()->id;
 
         $pokemon->save();
 
@@ -84,8 +87,11 @@ class PokemonController extends Controller
     public function show(Request $request, $id) {
         $action = $request->query('action', 'show');
         $pokemon = Pokemons::find($id);
+        $user = null;
+        if (isset($pokemon))
+            $user = User::find($pokemon -> user_id);
 
-        return view('pokemons.show', ['pokemon' => $pokemon, 'action' => $action]);
+        return view('pokemons.show', ['pokemon' => $pokemon, 'action' => $action, 'user' => $user]);
     }
 
 
@@ -145,11 +151,17 @@ class PokemonController extends Controller
      */
     public function destroy(Request $request, $id): RedirectResponse
     {
-        if ($request->delete == 'valide') {
-            $pokemon = Pokemons::find($id);
-            $pokemon->delete();
-        }
-        return redirect()->route('pokemons.index');
+        $pokemon = Pokemons::find($id);
+
+        if (Gate::denies('delete-pokemon', $pokemon))
+            return redirect()->route('pokemons.show',
+                ['titre' => 'Affichage d\'un pokemon', 'pokemon' => $pokemon->id, 'action' => 'show'])
+                ->with('type', 'error')
+                ->with('msg', 'Impossible de supprimer le pokemon');
+
+        $pokemon->delete();
+
+        return redirect()->route('pokemons.index')->with('status', 'Tâche supprimée avec succès');
     }
 
     public function upload(Request $request, $id) {

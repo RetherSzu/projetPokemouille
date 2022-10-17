@@ -26,11 +26,11 @@
     <div>
         <label for="extension"><strong>Extension : </strong></label>
         <input type="text" id="extension" name="extension"
-               value="{{ old('extension') }}">
+               value="{{ old('extension') }}" placeholder="De quelle extension viens ton pokemouille">
     </div>
     <div>
         <label for="vie"><strong>Vie : </strong></label>
-        <input type="number" name="vie" id="vie">
+        <input type="number" name="vie" id="vie" placeholder="Nombre de points de vie">
     </div>
     <div>
         <label for="type"><strong>Type du pokemon : </strong></label>

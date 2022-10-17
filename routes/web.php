@@ -15,14 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/pokemons', [PokemonController::class, 'index'])->name('pokemons.index');
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/apropos', [HomeController::class, 'apropos'])->name('home.apropos');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 
-Route::resource('pokemons', PokemonController::class);
+require __DIR__.'/auth.php';
 
-Route::post('/pokemons/{id}/upload', [PokemonController::class, 'upload'])->name('pokemons.upload');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-
-
+Route::middleware(['autauthh', 'verified'])->group(function () {
+    Route::resource('/pokemons', PokemonController::class);
+    //Route::get('/pokemons', [PokemonController::class, 'indexCookie'])->name('pokemons.index');
+    Route::post('pokemons/{id}/upload', [PokemonController::class, 'upload'])->name('pokemons.upload');
+});

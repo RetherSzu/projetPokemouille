@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <title>App Name - @yield('title')</title>
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/main.css'])
 </head>
 <body>
 <div class="border-body top"></div>
