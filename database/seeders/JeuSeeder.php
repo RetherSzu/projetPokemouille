@@ -14,7 +14,6 @@ class JeuSeeder extends Seeder
      */
     public function run()
     {
-
         Jeu::factory(20)->create();
     }
 }

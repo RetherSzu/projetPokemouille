@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Version;
-use Database\Factories\VersionFactory;
+use App\Models\Versions;
+use Database\Factories\VersionsFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,6 +16,6 @@ class VersionSeeder extends Seeder
      */
     public function run()
     {
-        Version::factory(20)->create();
+        Versions::factory(20)->create();
     }
 }

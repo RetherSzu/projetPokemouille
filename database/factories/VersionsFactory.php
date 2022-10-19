@@ -3,13 +3,14 @@
 namespace Database\Factories;
 
 use App\Models\Jeu;
+use App\Models\Model;
 use App\Models\Pokemons;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends Factory<Model>
  */
-class VersionFactory extends Factory
+class VersionsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -24,7 +25,7 @@ class VersionFactory extends Factory
             'idPokemon' => $this->faker->randomElement($pokemonsId),
             'idJeu' => $this->faker->randomElement($jeuxId),
             'numero' => $this->faker->randomFloat(10),
-            'data_sortie' => $this->faker->date,
+            'date_sortie' => $this->faker->date,
         ];
     }
 }

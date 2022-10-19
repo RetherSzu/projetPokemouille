@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700&display=swap');
 
 * {
-
     margin: 0;
     padding: 0;
     list-style: none;
@@ -80,8 +79,11 @@ h1 {
 }
 
 .jeu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 250px;
-    height: 150px;
+    height: 120px;
 }
 
 a, button {

@@ -31,6 +31,9 @@
         <p><strong>Createur :</strong> {{ $user->name}}</p>
     </div>
     <div>
+        <p><strong>Jeu :</strong> {{ $pokemon -> jeu }}</p>
+    </div>
+    <div>
         <img src="storage/{{$pokemon['url_media']}}" style="width: 200px" alt="Pas d'image a affichée">
     </div>
     @if($action == 'delete')
