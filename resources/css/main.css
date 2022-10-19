@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700&display=swap');
 
 * {
@@ -12,6 +8,10 @@
     text-decoration: none;
 }
 
+html {
+    font-family: 'Oxanium', cursive;
+}
+
 body {
     font-family: 'Oxanium', cursive;
     position: fixed;
@@ -20,8 +20,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 3px;
-    width: calc(100vw - 6px);
-    height: calc(100vh - 6px);
+    width: calc(100vw);
+    height: calc(100vh);
 }
 
 footer {
@@ -181,4 +181,8 @@ label:before {
     justify-content: space-between;
 
 }
+
+/*@tailwind base;*/
+@tailwind components;
+@tailwind utilities;
 

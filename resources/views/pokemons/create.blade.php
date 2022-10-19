@@ -21,7 +21,7 @@
     </div>
     <div>
         <label for="name"><strong>Nom du pokemon : </strong></label>
-        <input type="text" name="name" id="name" value="{{ old('nom') }}" placeholder="Non du pokemon">
+        <input type="text" name="name" id="name" value="{{ old('nom') }}" placeholder="Nom du pokemon">
     </div>
     <div>
         <label for="extension"><strong>Extension : </strong></label>

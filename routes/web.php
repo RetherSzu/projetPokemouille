@@ -25,8 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['autauthh', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/pokemons', PokemonController::class);
-    //Route::get('/pokemons', [PokemonController::class, 'indexCookie'])->name('pokemons.index');
     Route::post('pokemons/{id}/upload', [PokemonController::class, 'upload'])->name('pokemons.upload');
 });
