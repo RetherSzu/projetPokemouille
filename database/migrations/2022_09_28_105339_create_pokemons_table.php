@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nom')->unique();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('jeu_id');
+            $table->foreign('jeu_id')->references('id')->on('jeus')->onDelete('cascade');
             $table->string('extension');
             $table->integer('vie')->nullable(false);
             $table->string('type')->nullable(false);

@@ -12,6 +12,7 @@
             </li>
             @endguest
             @auth
+                <li><a href="{{ route('jeux.index') }}">Liste des jeux</a></li>
                 <li><a href="{{ route('pokemons.index') }}">Liste des pokemons</a></li>
                 <li><p>{{Auth::user()->name}}</p></li>
                 <a href="{{ route('logout') }}"

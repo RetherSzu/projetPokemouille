@@ -25,12 +25,16 @@ class PokemonController extends Controller
     public function index(Request $request)
     {
         $type = $request->get("type", '');
-        if (empty($type)) {
+        $jeu = $request->get("user", '');
+        if (empty($jeu) && empty($type))
             $pokemons = Pokemons::all();
-        } else {
+        else if (empty($jeu))
             $pokemons = Pokemons::where('type', '=', $type) -> get();
-        }
-        return view('pokemons.index', ['pokemons' => $pokemons]);
+        else if (empty($type))
+            $pokemons = Pokemons::where('jeu_id', '=', $jeu) -> get();
+        else
+            $pokemons = Pokemons::where('jeu_id', '=', $jeu)->where('type', '=', $type) -> get();
+        return view('pokemons.index', ['pokemons' => $pokemons, 'idJeu' => $jeu]);
     }
 
     /**

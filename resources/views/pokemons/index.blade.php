@@ -4,17 +4,27 @@
 
 @section('content')
     <div class="btn-list" style="margin: 1rem 0">
-        <div class="btn-type">
-            <a href={{ "pokemons?type=Eau" }}>Eau</a>
-            <a href={{ "pokemons?type=Terre" }}>Terre</a>
-            <a href={{ "pokemons?type=Feu" }}>Feu</a>
-            <a href={{ "pokemons?type=Vol" }}>Vol</a>
-        </div>
+        @if (!empty($idJeu))
+            <div class="btn-type">
+                <a href={{ "pokemons?user=" . $idJeu }}>Tout</a>
+                <a href={{ "pokemons?type=Eau&user=" . $idJeu }}>Eau</a>
+                <a href={{ "pokemons?type=Terre&user=" . $idJeu }}>Terre</a>
+                <a href={{ "pokemons?type=Feu&user=" . $idJeu }}>Feu</a>
+                <a href={{ "pokemons?type=Vol&user=" . $idJeu }}>Vol</a>
+            </div>
+        @else
+            <div class="btn-type">
+                <a href={{ "pokemons" }}>Tout</a>
+                <a href={{ "pokemons?type=Eau" }}>Eau</a>
+                <a href={{ "pokemons?type=Terre" }}>Terre</a>
+                <a href={{ "pokemons?type=Feu" }}>Feu</a>
+                <a href={{ "pokemons?type=Vol" }}>Vol</a>
+            </div>
+        @endif
         <div class="btn-add">
             <a href={{ "pokemons/create" }}>Ajouter un pokemon</a>
         </div>
     </div>
-
     @if(!empty($pokemons))
         <ul>
             @foreach($pokemons as $pokemon)

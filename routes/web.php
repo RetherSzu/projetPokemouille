@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JeuController;
 use App\Http\Controllers\PokemonController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/pokemons', PokemonController::class);
     Route::post('pokemons/{id}/upload', [PokemonController::class, 'upload'])->name('pokemons.upload');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('/jeux', JeuController::class);
+    //Route::post('jeux/{id}/upload', [PokemonController::class, 'upload'])->name('pokemons.upload');
 });

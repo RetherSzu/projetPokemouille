@@ -19,8 +19,7 @@ class JeuFactory extends Factory
     {
         return [
             'nom' => fake()->name(),
-            'editeur' => fake()->unique()->safeEmail(),
-            'genre' => fake()->randomElement($array = array('ADMIN', '')),
+            'editeur' => fake()->unique()->name(),
         ];
     }
 }

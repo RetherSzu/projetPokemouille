@@ -27,12 +27,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        // Setup pokemon delete
-        Gate::define('delete-pokemon', function ($user, $pokemon) {
-            if ($user -> role === "ADMIN")
-                return true;
-            return $user->id === $pokemon->user_id;
-        });
     }
 }

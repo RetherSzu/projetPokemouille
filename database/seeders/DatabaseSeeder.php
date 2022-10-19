@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Version;
+use Database\Factories\PokemonsFactory;
+use Database\Factories\VersionFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +19,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::Factory(10)->create();
-        $this -> call(PokemonSeeder::class);
         $this -> call(JeuSeeder::class);
+        $this -> call(PokemonSeeder::class);
+        $this -> call(VersionSeeder::class);
     }
 }

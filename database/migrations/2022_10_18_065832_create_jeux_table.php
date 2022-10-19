@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom')->nullable(false);
             $table->string('editeur')->nullable(false);
-            $table->string('genre')->nullable(false);
+            $table->string('genre')->default("RPG");
             $table->timestamps();
         });
     }
