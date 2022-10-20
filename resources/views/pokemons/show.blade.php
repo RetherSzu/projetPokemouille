@@ -31,7 +31,9 @@
         <p><strong>Createur :</strong> {{ $user->name}}</p>
     </div>
     <div>
-        <p><strong>Jeu :</strong> {{ $pokemon -> jeu }}</p>
+        @foreach($pokemon -> jeu as $jeu)
+            <p><strong>Jeu : {{ $jeu }}</strong></p>
+        @endforeach
     </div>
     <div>
         <img src="storage/{{$pokemon['url_media']}}" style="width: 200px" alt="Pas d'image a affichée">

@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('versions', function (Blueprint $table) {
-            $table->unsignedBigInteger('idPokemon');
-            $table->unsignedBigInteger('idJeu');
-            $table->foreign('idJeu')->references('id')->on('jeus')
+            $table->unsignedBigInteger('pokemons_id');
+            $table->unsignedBigInteger('jeu_id');
+            $table->foreign('jeu_id')->references('id')->on('jeus')
                 ->onDelete('cascade');
-            $table->foreign('idPokemon')->references('id')->on('pokemons')
+            $table->foreign('pokemons_id')->references('id')->on('pokemons')
                 ->onDelete('cascade');
             $table->string('numero', 50);
             $table->date('date_sortie');

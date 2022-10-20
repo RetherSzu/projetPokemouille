@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div style="margin: 1rem 0; bottom: 0">
-                        <a href={{ '/pokemons?user=' . $jeu['id']}}>Liste des pokemons</a>
+                        <a href={{ route('pokemons.index', ['user' => $jeu['id']])}}>Liste des pokemons</a>
                     </div>
                 </li>
             @endforeach
