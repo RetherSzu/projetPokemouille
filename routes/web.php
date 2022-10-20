@@ -20,6 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/apropos', [HomeController::class, 'apropos'])->name('home.apropos');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 
+
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
