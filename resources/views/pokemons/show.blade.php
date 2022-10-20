@@ -31,9 +31,16 @@
         <p><strong>Createur :</strong> {{ $user->name}}</p>
     </div>
     <div>
-        @foreach($pokemon -> jeu as $jeu)
-            <p><strong>Jeu : {{ $jeu }}</strong></p>
-        @endforeach
+        <p><strong>Jeu :</strong></p>
+        <ul>
+            @foreach($pokemon -> jeu as $jeu)
+                <li style="margin-bottom: 1rem">
+                    <p>Nom du jeu : {{ $jeu -> nom }}</p>
+                    <p>Version du jeu : {{ $jeu -> versions -> numero }}</p>
+                    <p>Date de sortie : {{ $jeu -> versions -> date_sortie }}</p>
+                </li>
+            @endforeach
+        </ul>
     </div>
     <div>
         <img src="storage/{{$pokemon['url_media']}}" style="width: 200px" alt="Pas d'image a affichée">

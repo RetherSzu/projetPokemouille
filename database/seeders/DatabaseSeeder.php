@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         User::Factory(10)->create();
         $this -> call(JeuSeeder::class);
         $this -> call(PokemonSeeder::class);
+        $this -> call(VersionSeeder::class);
     }
 }

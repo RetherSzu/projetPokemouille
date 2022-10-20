@@ -6,6 +6,7 @@ use App\Models\Pokemons;
 use App\Policies\PokemonPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Log;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,8 @@ class AuthServiceProvider extends ServiceProvider
 
         // Setup pokemon delete
         Gate::define('delete-pokemon', function ($user, $pokemon) {
-            return $user->id === $pokemon->user_id || $user->is_admin;
+            Log::info("AuthServiceProvider  Gate : ".$user->id."=?=".$pokemon->user_id);
+            return $user->isAdmin || $user->id === $pokemon->user_id;
         });
 
     }

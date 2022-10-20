@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,7 @@ class PokemonController extends Controller
             $pokemons = Pokemons::where('jeu_id', '=', $jeu) -> get();
         else
             $pokemons = Pokemons::where('jeu_id', '=', $jeu)->where('type', '=', $type) -> get();
-        return view('pokemons.index', ['pokemons' => $pokemons, 'idJeu' => $jeu]);
+        return view('pokemons.index', ['pokemons' => $pokemons, 'idJeu' => $jeu, "jeu" => Jeu::find($jeu)]);
     }
 
     /**
@@ -102,13 +103,18 @@ class PokemonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Application|Factory|View
      */
-    public function edit($id): View|Factory|Application
+    public function edit($id): Application|Factory|View
     {
-        $pokemons = Pokemons::find($id);
-        return view('pokemons.edit', ['pokemons' => $pokemons]);
+        $user = Auth::user();
+        $pokemon = Pokemons::find($id);
+        if ($user->cant('update',$pokemon)) {
+            return redirect()->route('pokemons.show', ['pokemon' => $pokemon, 'action' => 'show'])
+                ->with('msg', "Vous n'êtes pas le créateur !" );
+        }
+        return view('pokemons.edit', ['pokemons' => $pokemon]);
     }
 
     /**
@@ -150,7 +156,7 @@ class PokemonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return RedirectResponse
      */
     public function destroy(Request $request, $id): RedirectResponse
@@ -164,7 +170,6 @@ class PokemonController extends Controller
                 ->with('msg', 'Impossible de supprimer le pokemon');
 
         $pokemon->delete();
-
         return redirect()->route('pokemons.index')->with('status', 'Tâche supprimée avec succès');
     }
 

@@ -14,8 +14,8 @@ class Jeu extends Model
     protected $fillable = ['nom', 'editeur', 'genre'];
 
     public function pokemons() {
-        return $this->belongsToMany(Pokemons::class, 'version')
-            ->as('version')
+        return $this->belongsToMany(Pokemons::class, 'versions')
+            ->as('versions')
             ->withPivot('numero', 'date_sortie');
     }
 }

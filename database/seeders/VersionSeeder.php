@@ -24,11 +24,10 @@ class VersionSeeder extends Seeder
         $pokemons = Pokemons::all();
         $jeux_id = Jeu::all()->pluck('id');
         foreach ($pokemons as $pokemon) {
-            $nbPersonnes = $faker->numberBetween(2, 5);
-            $pokemons_jeu_ids = $faker->randomElements($jeux_id, $nbPersonnes, false);
-            $first = true;
+            $nbJeux = $faker->numberBetween(2, 5);
+            $pokemons_jeu_ids = $faker->randomElements($jeux_id, $nbJeux, false);
             foreach ($pokemons_jeu_ids as $id) {
-                $pokemon->personnes()->attach($id, ['numero' => $faker->randomFloat(10),
+                $pokemon->jeu()->attach($id, ['numero' => $faker->randomFloat(10),
                     'date_sortie' => $faker->dateTimeInInterval(
                         $startDate = '-3 months',
                         $interval = '+ 90 days',

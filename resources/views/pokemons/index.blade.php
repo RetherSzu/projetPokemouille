@@ -3,6 +3,11 @@
 @section('title', 'Page contact')
 
 @section('content')
+    @if(!empty($jeu))
+        <h2>Jeu : {{$jeu -> nom}}</h2>
+        <p><strong>Numero de version : </strong>{{ $jeu -> pokemons[0] -> versions -> numero }}</p>
+        <p><strong>Date de sortie : </strong>{{ $jeu -> pokemons[0] -> versions -> date_sortie }}</p>
+    @endif
     <div class="btn-list" style="margin: 1rem 0">
         @if (!empty($idJeu))
             <div class="btn-type">
