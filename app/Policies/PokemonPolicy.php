@@ -21,15 +21,11 @@ class PokemonPolicy
     }
 
     function update(User $user, Pokemons $pokemon) {
-        if ($user -> role == 'ADMIN')
-            return true;
-        return $user->id == $pokemon->user_id;
+        return $user->id == $pokemon->user_id || $user -> isAdmin;
     }
 
     function delete(User $user, Pokemons $pokemon) {
-        if ($user -> role == 'ADMIN')
-            return true;
-        return $user->id == $pokemon->user_id;
+        return $user->id == $pokemon->user_id || $user -> isAdmin;
     }
 
     function create(User $user) {

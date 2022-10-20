@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jeu;
 use App\Models\Pokemons;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -97,7 +98,6 @@ class PokemonController extends Controller
 
         return view('pokemons.show', ['pokemon' => $pokemon, 'action' => $action, 'user' => $user]);
     }
-
 
     /**
      * Show the form for editing the specified resource.

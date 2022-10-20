@@ -24,8 +24,8 @@ class Pokemons extends Model
     }
 
     public function jeu() {
-        return $this->belongsToMany(Jeu::class, 'version')
-            ->as('version')
+        return $this->belongsToMany(Jeu::class, 'versions')
+            ->as('versions')
             ->withPivot('numero', 'date_sortie');
     }
 }
